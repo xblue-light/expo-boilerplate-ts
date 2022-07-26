@@ -17,11 +17,6 @@ export const HomeScreen = ({ navigation }: any) => {
         title="Details"
         color="primary"
       />
-      <Button
-        onPress={() => navigation.navigate("HomeDetailsScreen")}
-        title="Overlay"
-        color="secondary"
-      />
     </SafeAreaView>
   );
 };
