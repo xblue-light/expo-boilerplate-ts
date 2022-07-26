@@ -1,7 +1,7 @@
 import { HeaderAlpha } from "../components/index";
 import React from "react";
 import { View, Text } from "react-native";
-import { useTheme } from "@rneui/themed";
+import { useTheme, Button } from "@rneui/themed";
 import { globalStyles } from "../styles/global";
 
 export const DetailsScreen = () => {
@@ -10,7 +10,8 @@ export const DetailsScreen = () => {
     <>
       <HeaderAlpha />
       <View style={globalStyles?.viewStyles}>
-        <Text>WELCOME TO THE DETAILS.</Text>
+        <Text>This is the details screen can be reusable component.</Text>
+        <Button title="WELCOME DETAILS"></Button>
       </View>
     </>
   );

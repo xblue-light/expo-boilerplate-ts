@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 import { DrawerLayoutAndroid, Text, StyleSheet, View } from "react-native";
-
 import { Button } from "@rneui/themed";
 
-export const DrawerLayoutAndroidAlpha = () => {
+export const DrawerLayoutAndroidScreen = () => {
   const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("left");
   const changeDrawerPosition = () => {

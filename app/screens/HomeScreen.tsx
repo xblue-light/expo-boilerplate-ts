@@ -13,28 +13,17 @@ export const HomeScreen = ({ navigation }: any) => {
       }}
     >
       <Button
-        onPress={() => navigation.navigate("DetailsScreen")}
+        onPress={() => navigation.navigate("Details")}
         title="Details"
         color="primary"
       />
-      <Button
-        onPress={() => navigation.navigate("FlatListScreen")}
-        title="FlatList"
-        color="secondary"
-      />
       {Platform.OS === "android" && (
         <Button
-          onPress={() => navigation.navigate("DrawerAndroidScreen")}
-          title="DrawerAndroidLayout"
+          onPress={() => navigation.navigate("DrawerLayoutAndroid")}
+          title="DrawerLayoutAndroid"
           color="warning"
         />
       )}
-
-      <Button
-        onPress={() => navigation.navigate("OverlayScreen")}
-        title="Overlay"
-        color="success"
-      />
     </SafeAreaView>
   );
 };

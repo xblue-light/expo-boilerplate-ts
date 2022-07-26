@@ -7,9 +7,9 @@ import { globalStyles } from "../styles/global";
 type OverlayComponentProps = {};
 
 // TODO: Need to make component much more reuseable
-export const OverlayComponent: React.FunctionComponent<
-  OverlayComponentProps
-> = () => {
+export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
+  navigation,
+}: any) => {
   const { theme } = useTheme();
   const [visible, setVisible] = useState(false);
 
@@ -24,6 +24,10 @@ export const OverlayComponent: React.FunctionComponent<
         backgroundColor: "#cece",
       }}
     >
+      <Button
+        title="GO TO DETAILS"
+        onPress={() => navigation.navigate("Details")}
+      />
       <Button title="Open Overlay" onPress={toggleOverlay} />
       <Overlay
         isVisible={visible}

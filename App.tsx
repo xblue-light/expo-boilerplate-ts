@@ -1,56 +1,52 @@
-import React from "react";
-import { ThemeProvider } from "@rneui/themed";
+import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ThemeProvider } from "@rneui/themed";
 import { alphaTheme } from "./app/styles/theme";
-import { DrawerLayoutAndroidAlpha } from "./app/components/DrawerLayoutAndroid";
-import { OverlayComponent } from "./app/components/index";
-import { FlatListAlpha } from "./app/components/FlatList";
-import { ScreenTypes } from "./app/types/ScreenTypes";
-import { HomeScreen } from "./app/screens/homeScreen";
-import { DetailsScreen } from "./app/screens/detailsScreen";
+import { HomeScreen } from "./app/screens/HomeScreen";
+import { DetailsScreen } from "./app/screens/DetailsScreen";
+import { DrawerLayoutAndroidScreen } from "./app/screens/DrawerLayoutAndroidScreen";
 
-const Stack = createNativeStackNavigator();
+// BEGINS HOME STACK WITH MULTUPLE SCREENS
+const HomeStack = createNativeStackNavigator();
 
-const componentScreens: Array<ScreenTypes> = [
-  {
-    name: "HomeScreen",
-    component: HomeScreen,
-  },
-  {
-    name: "DetailsScreen",
-    component: DetailsScreen,
-  },
-  {
-    name: "FlatListScreen",
-    component: FlatListAlpha,
-  },
-  {
-    name: "DrawerAndroidScreen",
-    component: DrawerLayoutAndroidAlpha,
-  },
-  {
-    name: "OverlayScreen",
-    component: OverlayComponent,
-  },
-];
-
-export default () => {
+function HomeStackScreen() {
   return (
-    <>
-      <ThemeProvider theme={alphaTheme}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            {componentScreens.map((item, index) => (
-              <Stack.Screen
-                key={index}
-                name={item.name}
-                component={item.component}
-              />
-            ))}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </ThemeProvider>
-    </>
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+      <HomeStack.Screen name="Details" component={DetailsScreen} />
+    </HomeStack.Navigator>
   );
-};
+}
+
+// BEGINS SETTINGS STACK WITH MULTIPLE SCREENS
+const SettingsStack = createNativeStackNavigator();
+
+function SettingsStackScreen() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="DrawerLayoutAndroid"
+        component={DrawerLayoutAndroidScreen}
+      />
+      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+    </SettingsStack.Navigator>
+  );
+}
+
+// CREATE TAB NAVIGATOR WHICH WILL WRAP AROUND MULTIPLE TAB SCREENS
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <ThemeProvider theme={alphaTheme}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={HomeStackScreen} />
+          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
