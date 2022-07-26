@@ -36,4 +36,19 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  overlayStyles: {
+    width: "100%",
+    padding: 16,
+  },
+  textPrimary: {
+    marginVertical: 20,
+    textAlign: "center",
+    fontSize: 20,
+  },
+  textSecondary: {
+    marginBottom: 10,
+    textAlign: "center",
+    fontSize: 17,
+  },
+  viewStyles: { flex: 1, alignItems: "center", justifyContent: "center" },
 });
