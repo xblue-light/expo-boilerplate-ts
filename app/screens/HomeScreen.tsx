@@ -13,17 +13,15 @@ export const HomeScreen = ({ navigation }: any) => {
       }}
     >
       <Button
-        onPress={() => navigation.navigate("Details")}
+        onPress={() => navigation.navigate("HomeDetailsScreen")}
         title="Details"
         color="primary"
       />
-      {Platform.OS === "android" && (
-        <Button
-          onPress={() => navigation.navigate("DrawerLayoutAndroid")}
-          title="DrawerLayoutAndroid"
-          color="warning"
-        />
-      )}
+      <Button
+        onPress={() => navigation.navigate("HomeDetailsScreen")}
+        title="Overlay"
+        color="secondary"
+      />
     </SafeAreaView>
   );
 };

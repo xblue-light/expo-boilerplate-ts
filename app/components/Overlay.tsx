@@ -26,7 +26,7 @@ export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
     >
       <Button
         title="GO TO DETAILS"
-        onPress={() => navigation.navigate("Details")}
+        onPress={() => navigation.navigate("SettingsDetailsScreen")}
       />
       <Button title="Open Overlay" onPress={toggleOverlay} />
       <Overlay

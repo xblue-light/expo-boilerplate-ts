@@ -6,7 +6,7 @@ import { ThemeProvider } from "@rneui/themed";
 import { alphaTheme } from "./app/styles/theme";
 import { HomeScreen } from "./app/screens/HomeScreen";
 import { DetailsScreen } from "./app/screens/DetailsScreen";
-import { DrawerLayoutAndroidScreen } from "./app/screens/DrawerLayoutAndroidScreen";
+import { OverlayAlpha } from "./app/components";
 
 // BEGINS HOME STACK WITH MULTUPLE SCREENS
 const HomeStack = createNativeStackNavigator();
@@ -14,8 +14,8 @@ const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-      <HomeStack.Screen name="Details" component={DetailsScreen} />
+      <HomeStack.Screen name="HomeRootScreen" component={HomeScreen} />
+      <HomeStack.Screen name="HomeDetailsScreen" component={DetailsScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -27,10 +27,13 @@ function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen
-        name="DrawerLayoutAndroid"
-        component={DrawerLayoutAndroidScreen}
+        name="SettingsOverlayScreen"
+        component={OverlayAlpha}
       />
-      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+      <SettingsStack.Screen
+        name="SettingsDetailsScreen"
+        component={DetailsScreen}
+      />
     </SettingsStack.Navigator>
   );
 }
@@ -42,7 +45,7 @@ export default function App() {
   return (
     <ThemeProvider theme={alphaTheme}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName="Home">
           <Tab.Screen name="Home" component={HomeStackScreen} />
           <Tab.Screen name="Settings" component={SettingsStackScreen} />
         </Tab.Navigator>
