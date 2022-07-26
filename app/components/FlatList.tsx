@@ -29,8 +29,9 @@ const Item = ({ title }: any) => (
   </View>
 );
 
-export const FlatListAlpha = () => {
-  const renderItem = ({ item }: any) => <Item title={item.title} />;
+export const FlatListAlpha = (): JSX.Element => {
+  const renderItem = ({ item }: any) =>
+    (<Item title={item.title} />) as JSX.Element;
 
   return (
     <SafeAreaView style={styles.container}>

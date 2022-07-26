@@ -11,7 +11,7 @@ interface Props {
   onPress?: () => void;
   overrideStyles?: StyleProp<ViewStyle>;
 }
-// Your App
+
 export const AlphaButton = (props: Props): JSX.Element => {
   return (
     <RaisedButton

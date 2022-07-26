@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Button, Overlay, Icon } from "@rneui/themed";
-import { View, Text, SafeAreaView } from "react-native";
+import { Text, SafeAreaView } from "react-native";
 import { useTheme } from "@rneui/themed";
 import { globalStyles } from "../styles/global";
 
 type OverlayComponentProps = {};
 
-// TODO: Need to make component much more reuseable
+//
+// TODO:
+// 1. Need to make component much more reuseable
+// 2. Fix types
+//
 export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
   navigation,
 }: any) => {
@@ -20,8 +24,8 @@ export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
   return (
     <SafeAreaView
       style={{
-        padding: 16,
-        backgroundColor: "#cece",
+        padding: theme.spacing.md,
+        backgroundColor: theme.colors.warning,
       }}
     >
       <Button

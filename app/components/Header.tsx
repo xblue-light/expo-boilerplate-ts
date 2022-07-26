@@ -11,7 +11,7 @@ export const HeaderAlpha = () => {
         backgroundImageStyle={{}}
         barStyle="default"
         centerComponent={{
-          text: "Engagify",
+          text: "Engage Trustify",
           style: { color: "#fff" },
         }}
         centerContainerStyle={{}}
