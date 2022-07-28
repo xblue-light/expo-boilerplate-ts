@@ -1,17 +1,22 @@
-import { HeaderAlpha } from "../components/index";
 import React from "react";
-import { View, Text } from "react-native";
-import { useTheme, Button } from "@rneui/themed";
+import { View, Text, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles/global";
+import { ScreenNames } from "../enums/ScreenNames";
 
-export const DetailsScreen = () => {
-  const { theme } = useTheme();
+export const DetailsScreen = ({ navigation }: any): JSX.Element => {
+  const goBackHome = (): void =>
+    navigation.navigate(ScreenNames.ROOT_HOME_SCREEN);
   return (
     <>
-      <HeaderAlpha />
-      <View style={globalStyles?.viewStyles}>
-        <Text>This is the details screen can be reusable component.</Text>
-        <Button title="WELCOME DETAILS"></Button>
+      <View style={globalStyles.container}>
+        <View style={globalStyles?.viewStyles}>
+          <Text style={{ textAlign: "left" }}>
+            This is the home details screen can be reusable component.
+          </Text>
+          <TouchableOpacity onPress={goBackHome}>
+            <Text style={{ textAlign: "left" }}>GO HOMEe</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );

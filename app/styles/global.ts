@@ -1,26 +1,22 @@
 import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
-  titleText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-  },
+  titleText: {},
   paragraph: {
     marginVertical: 8,
     lineHeight: 20,
   },
   container: {
     flex: 1,
-    padding: 20,
   },
   headerContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#397af8",
-    marginBottom: 20,
+    backgroundColor: "coral",
+    marginBottom: 16,
     width: "100%",
-    paddingVertical: 15,
+    paddingVertical: 16,
+    height: 100,
   },
   heading: {
     color: "white",
@@ -42,13 +38,18 @@ export const globalStyles = StyleSheet.create({
   },
   textPrimary: {
     marginVertical: 20,
-    textAlign: "center",
     fontSize: 20,
   },
   textSecondary: {
     marginBottom: 10,
-    textAlign: "center",
     fontSize: 17,
   },
-  viewStyles: { flex: 1, alignItems: "center", justifyContent: "center" },
+  viewStyles: {
+    flex: 1,
+    alignItems: "flex-start",
+    justifyContent: "center",
+    backgroundColor: "lavender",
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
 });

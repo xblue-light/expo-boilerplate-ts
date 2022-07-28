@@ -6,7 +6,9 @@ import { ThemeProvider } from "@rneui/themed";
 import { alphaTheme } from "./app/styles/theme";
 import { HomeScreen } from "./app/screens/HomeScreen";
 import { DetailsScreen } from "./app/screens/DetailsScreen";
-import { OverlayAlpha } from "./app/components";
+import { OverlayScreen } from "./app/screens/OverlayScreen";
+import { ScreenNames } from "./app/enums/ScreenNames";
+import { HeaderAlpha } from "./app/components/Header";
 
 // BEGINS HOME STACK WITH MULTUPLE SCREENS
 const HomeStack = createNativeStackNavigator();
@@ -14,8 +16,14 @@ const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="HomeRootScreen" component={HomeScreen} />
-      <HomeStack.Screen name="HomeDetailsScreen" component={DetailsScreen} />
+      <HomeStack.Screen
+        name={ScreenNames.ROOT_HOME_SCREEN}
+        component={HomeScreen}
+      />
+      <HomeStack.Screen
+        name={ScreenNames.HOME_DETAILS_SCREEN}
+        component={DetailsScreen}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -27,12 +35,8 @@ function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen
-        name="SettingsOverlayScreen"
-        component={OverlayAlpha}
-      />
-      <SettingsStack.Screen
-        name="SettingsDetailsScreen"
-        component={DetailsScreen}
+        name={ScreenNames.SETTINGS_OVERLAY_SCREEN}
+        component={OverlayScreen}
       />
     </SettingsStack.Navigator>
   );
@@ -45,9 +49,10 @@ export default function App() {
   return (
     <ThemeProvider theme={alphaTheme}>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Home">
-          <Tab.Screen name="Home" component={HomeStackScreen} />
-          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <HeaderAlpha />
+        <Tab.Navigator initialRouteName={ScreenNames.ROOT_HOME_SCREEN}>
+          <Tab.Screen name="HOME_TAB" component={HomeStackScreen} />
+          <Tab.Screen name="SETTINGS_TAB" component={SettingsStackScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </ThemeProvider>

@@ -1,7 +1,6 @@
 import { Button, useTheme } from "@rneui/themed";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Platform } from "react-native";
 
 export const HomeScreen = ({ navigation }: any) => {
   const { theme } = useTheme();
@@ -9,12 +8,12 @@ export const HomeScreen = ({ navigation }: any) => {
     <SafeAreaView
       style={{
         padding: theme.spacing.md,
-        backgroundColor: theme.colors.grey5,
+        backgroundColor: "rebeccapurple",
       }}
     >
       <Button
         onPress={() => navigation.navigate("HomeDetailsScreen")}
-        title="Details"
+        title="HomeDetailsScreen"
         color="primary"
       />
     </SafeAreaView>

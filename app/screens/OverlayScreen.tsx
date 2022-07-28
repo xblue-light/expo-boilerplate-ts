@@ -6,12 +6,7 @@ import { globalStyles } from "../styles/global";
 
 type OverlayComponentProps = {};
 
-//
-// TODO:
-// 1. Need to make component much more reuseable
-// 2. Fix types
-//
-export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
+export const OverlayScreen: React.FunctionComponent<OverlayComponentProps> = ({
   navigation,
 }: any) => {
   const { theme } = useTheme();
@@ -25,13 +20,9 @@ export const OverlayAlpha: React.FunctionComponent<OverlayComponentProps> = ({
     <SafeAreaView
       style={{
         padding: theme.spacing.md,
-        backgroundColor: theme.colors.warning,
+        backgroundColor: "yellow",
       }}
     >
-      <Button
-        title="GO TO DETAILS"
-        onPress={() => navigation.navigate("SettingsDetailsScreen")}
-      />
       <Button title="Open Overlay" onPress={toggleOverlay} />
       <Overlay
         isVisible={visible}
