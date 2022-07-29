@@ -19,11 +19,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   flexContainer: {
-    flex: 1, // Take up available total space so then the children automatically will take up the full height (i.e text components).
-    flexDirection: "row", // default is column; column-reverse; row; row-reservse;
-    backgroundColor: "forestgreen",
+    //Take up available total space so then the children automatically will take up the full height (i.e text components).
+    flex: 1,
+    flexDirection: "row", // default is column; column-reverse; row; row-reservse; This is our main axis.
+    backgroundColor: "#cece",
     justifyContent: "space-around", // Defines the space b/e children elements.
-    alignItems: "flex-end", // Defines how the inner children elements will be aligned within the flex container.
+    alignItems: "center", // Define how we spread children elements in the cross axis. Remember our main axis is defined in flex-direction.
   },
   textEleOne: {
     backgroundColor: "rebeccapurple",
@@ -32,17 +33,17 @@ const styles = StyleSheet.create({
   },
   textEleTwo: {
     backgroundColor: "coral",
-    padding: 16,
+    padding: 32,
     color: "white",
   },
   textEleThr: {
     backgroundColor: "lightblue",
-    padding: 16,
+    padding: 48,
     color: "white",
   },
   textEleFou: {
     backgroundColor: "pink",
-    padding: 16,
+    padding: 64,
     color: "white",
   },
 });
