@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["app/*"],
-      "@components/*": ["app/components/*"],
-      "@styles/*": ["app/styles/*"],
-      "@utils/*": ["app/utils/*"]
+      "./app/*": ["app/*"],
+      "./app/components/*": ["app/components/*"],
+      "./app/styles/*": ["app/styles/*"],
+      "./app/utils/*": ["app/utils/*"]
     },
     "esModuleInterop": true,
     "strict": true,
