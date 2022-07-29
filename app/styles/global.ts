@@ -12,20 +12,19 @@ export const globalStyles = StyleSheet.create({
   headerContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "coral",
-    marginBottom: 16,
+    backgroundColor: "yellow",
     width: "100%",
-    paddingVertical: 16,
-    height: 100,
   },
   heading: {
     color: "white",
     fontSize: 22,
     fontWeight: "bold",
   },
-  headerRight: {
+  headerLeftComponent: {
+    flex: 1,
     display: "flex",
     flexDirection: "row",
+    alignItems: "flex-end",
   },
   subheaderText: {
     color: "white",

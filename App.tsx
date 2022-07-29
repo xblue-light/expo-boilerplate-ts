@@ -1,49 +1,113 @@
 import * as React from "react";
 import { ThemeProvider } from "@rneui/themed";
 import { alphaTheme } from "./app/styles/theme";
-import { Text, StyleSheet } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { HeaderAlpha } from "./app/components/Header";
+import { Input, Text } from "@rneui/themed";
+import { Button } from "@rneui/base";
 
 export default function App() {
+  const [todoInputVal, setStateTodoInputVal] = React.useState(null);
+
+  const [todosList, setStateTodosList] = React.useState([
+    {
+      name: "Lorem ipsum koreal 1",
+      id: 0,
+    },
+    {
+      name: "Lorem ipsum koreal 2",
+      id: 1,
+    },
+    {
+      name: "Lorem ipsum koreal 3",
+      id: 2,
+    },
+    {
+      name: "Lorem ipsum koreal 4",
+      id: 3,
+    },
+  ]);
+
+  const onChangeHandler = (textVal: string): void => {
+    setStateTodoInputVal(textVal);
+  };
+
+  const onSubmitAddTodo = () => {
+    if (!todoInputVal) {
+      Alert.alert("Please enter input value!");
+      return;
+    } else {
+      // Find if the todo value in current state already exists in the todos array.
+      if (todosList.find((el) => el.name === todoInputVal)) {
+        Alert.alert("Wops. That one already exists!");
+        return;
+      }
+      console.log("OK. Added new todo!");
+      setStateTodosList([
+        { name: todoInputVal, id: todosList.length + 1 },
+        ...todosList,
+      ]);
+    }
+  };
+
+  const onTouchRemoveFromArray = (id: number) => {
+    setStateTodosList(todosList.filter((el) => el?.id !== id));
+    console.log("Deleted todo from list.");
+  };
+
   return (
     <ThemeProvider theme={alphaTheme}>
-      <SafeAreaView style={styles.flexContainer}>
-        <Text style={styles.textEleOne}>ELE 1</Text>
-        <Text style={styles.textEleTwo}>ELE 2</Text>
-        <Text style={styles.textEleThr}>ELE 3</Text>
-        <Text style={styles.textEleFou}>ELE 4</Text>
+      <HeaderAlpha />
+      <SafeAreaView>
+        <Input
+          placeholder="eg. John Doe"
+          errorStyle={{ color: "coral" }}
+          defaultValue="James Packer"
+          onChangeText={onChangeHandler}
+          style={{ padding: 16, backgroundColor: "white", flex: 1 }}
+        />
+      </SafeAreaView>
+
+      <SafeAreaView
+        style={{
+          flexDirection: "column",
+          flex: 1,
+          alignItems: "flex-start",
+        }}
+      >
+        {todosList &&
+          todosList?.map((val) => (
+            <TouchableOpacity
+              onPress={() => onTouchRemoveFromArray(val.id)}
+              key={val.id.toString()}
+            >
+              <Text
+                style={{
+                  padding: 16,
+                  backgroundColor: "yellow",
+                  marginLeft: 16,
+                  marginTop: 16,
+                  width: 380,
+                }}
+              >
+                * {val.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+
+        <Button
+          onPress={onSubmitAddTodo}
+          buttonStyle={{
+            padding: 16,
+            width: 380,
+            marginLeft: 16,
+            marginTop: 32,
+          }}
+        >
+          <Text>ADD NOTE</Text>
+        </Button>
       </SafeAreaView>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  flexContainer: {
-    //Take up available total space so then the children automatically will take up the full height (i.e text components).
-    flex: 1,
-    flexDirection: "row", // default is column; column-reverse; row; row-reservse; This is our main axis.
-    backgroundColor: "#cece",
-    justifyContent: "space-around", // Defines the space b/e children elements.
-    alignItems: "center", // Define how we spread children elements in the cross axis. Remember our main axis is defined in flex-direction.
-  },
-  textEleOne: {
-    backgroundColor: "rebeccapurple",
-    padding: 16,
-    color: "white",
-  },
-  textEleTwo: {
-    backgroundColor: "coral",
-    padding: 32,
-    color: "white",
-  },
-  textEleThr: {
-    backgroundColor: "lightblue",
-    padding: 48,
-    color: "white",
-  },
-  textEleFou: {
-    backgroundColor: "pink",
-    padding: 64,
-    color: "white",
-  },
-});

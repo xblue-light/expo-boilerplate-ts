@@ -1,47 +1,38 @@
 import * as React from "react";
-import { Header, Icon, Text } from "@rneui/base";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Header, Icon } from "@rneui/base";
 import { View, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles/global";
 
-export const HeaderAlpha = () => {
+export const HeaderAlpha = (): JSX.Element => {
   return (
-    <SafeAreaProvider>
-      <Header
-        backgroundImageStyle={{}}
-        barStyle="default"
-        centerComponent={{
-          text: "Engage Trustify",
-          style: { color: "#ffffff", paddingTop: 5 },
-        }}
-        centerContainerStyle={{}}
-        containerStyle={globalStyles.headerContainer}
-        leftComponent={
-          <View style={globalStyles.headerRight}>
-            <TouchableOpacity
-              onPress={() => console.log("Hello you clicked menu icon 2")}
-            >
-              <Icon name="menu" color="white" size={35} />
-            </TouchableOpacity>
-          </View>
-        }
-        linearGradientProps={{}}
-        placement="center"
-        rightComponent={{ icon: "home", color: "#ffffff", size: 35 }}
-        rightContainerStyle={{}}
-        statusBarProps={{}}
-      />
-      <View style={globalStyles.viewStyles}>
-        <Text>
-          Kielbasa tail porchetta beef ball tip. Venison fatback cupim pastrami.
-          Cow chicken bresaola pig prosciutto meatloaf capicola corned beef
-          strip steak chislic pork jerky sirloin bacon. Pork belly andouille
-          salami frankfurter ball tip spare ribs, alcatra turkey tenderloin jowl
-          prosciutto ribeye brisket short loin bresaola. Jowl andouille jerky,
-          tenderloin venison frankfurter buffalo shank meatloaf chicken
-          meatball.
-        </Text>
-      </View>
-    </SafeAreaProvider>
+    <Header
+      backgroundImageStyle={{}}
+      barStyle="default"
+      centerComponent={{
+        text: "Yellow Notes",
+        style: {
+          color: "#333",
+          paddingTop: 16,
+          fontSize: 16,
+          fontWeight: "bold",
+        },
+      }}
+      centerContainerStyle={{}}
+      containerStyle={globalStyles.headerContainer}
+      leftComponent={
+        <View style={globalStyles.headerLeftComponent}>
+          <TouchableOpacity
+            onPress={() => console.log("Hello you clicked menu icon 2")}
+          >
+            <Icon name="menu" color="white" size={35} />
+          </TouchableOpacity>
+        </View>
+      }
+      linearGradientProps={{}}
+      placement="center"
+      rightComponent={{ icon: "home", color: "#ffffff", size: 35 }}
+      rightContainerStyle={{ paddingTop: 8 }}
+      statusBarProps={{}}
+    />
   );
 };
