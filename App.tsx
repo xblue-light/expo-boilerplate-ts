@@ -33,7 +33,7 @@ export default function App() {
     setStateTodoInputVal(textVal);
   };
 
-  const onSubmitAddTodo = () => {
+  const onSubmitAddTodo = (): void => {
     if (!todoInputVal) {
       Alert.alert("Please enter input value!");
       return;
@@ -51,7 +51,7 @@ export default function App() {
     }
   };
 
-  const onTouchRemoveFromArray = (id: number) => {
+  const onTouchRemoveFromArray = (id: number): void => {
     setStateTodosList(todosList.filter((el) => el?.id !== id));
     console.log("Deleted todo from list.");
   };
