@@ -9,9 +9,11 @@ export const loginWithMockUserCreds = async () => {
       username: "johndoe",
       email: "johndoe@yahoo.com",
     });
-    console.log(response.data);
+    console.log(`Bearer ${response.data}`);
     return response.data;
   } catch (error) {
+    console.log("Error. Something went wrong with the request.");
+
     console.log(JSON.stringify(error, null, 4));
   }
 };

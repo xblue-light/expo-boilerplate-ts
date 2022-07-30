@@ -8,6 +8,7 @@ import authReducer from "./app/reducers/authReducer";
 import { ProtectedScreen } from "./app/screens/ProtectedScreen";
 import { loginWithMockUserCreds } from "./app/axios/axiosInstance";
 import * as SecureStore from "expo-secure-store";
+import { IAuthData } from "./app/interfaces/IAuthData";
 
 function SplashScreen() {
   return (
@@ -27,31 +28,23 @@ export default function App() {
   });
 
   useEffect(() => {
-    // Read the secure store.
-    SecureStore.getItemAsync("userToken").then((store) => {
-      dispatch({ type: "RESTORE_TOKEN", token: store });
-      console.log(store);
-    });
-
-    console.log(JSON.stringify(state, null, 4));
-
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      let userToken;
+      let userToken = null;
 
       try {
         // Restore token stored in `SecureStore` or any other encrypted storage
-        // userToken = await SecureStore.getItemAsync('userToken');
+        userToken = await SecureStore.getItemAsync("userToken");
       } catch (e) {
         // Restoring token failed
-        // TODO ... Add error handler
+        console.log("An error occured trying to get item storage.");
       }
 
       // After restoring token, we may need to validate it in production apps
-
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      //dispatch({ type: "RESTORE_TOKEN", token: userToken });
+
+      dispatch({ type: "RESTORE_TOKEN", token: userToken });
     };
 
     bootstrapAsync();
@@ -59,30 +52,17 @@ export default function App() {
 
   const authContext = useMemo(
     () => ({
-      signIn: async (data: any) => {
-        console.log("DISPATCH: SIGN_IN");
-
-        // Read the secure store.
-        SecureStore.getItemAsync("userToken").then((store) =>
-          console.log(store)
-        );
-
+      signIn: async (data?: IAuthData) => {
         // Login and get access token
-        const response = await loginWithMockUserCreds();
-
+        let accessToken = await loginWithMockUserCreds();
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
-        dispatch({ type: "SIGN_IN", token: response?.accessToken });
-
+        dispatch({ type: "SIGN_IN", token: `Bearer ${accessToken}` });
+        console.log("DISPATCH: SIGN_IN");
         // Set the new access token
-        SecureStore.setItemAsync("userToken", response?.accessToken);
-
-        // Read the secure store.
-        SecureStore.getItemAsync("userToken").then((store) =>
-          console.log(store)
-        );
+        await SecureStore.setItemAsync("userToken", accessToken);
       },
       signOut: async () => {
         // TODO:
@@ -92,15 +72,12 @@ export default function App() {
         // Clear the secure storage on logout
         SecureStore.deleteItemAsync("userToken");
       },
-      signUp: async (data: any) => {
-        // TODO:
-        console.log("DISPATCH: SIGN_IN");
-
+      signUp: async (data?: IAuthData) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
-
+        console.log("DISPATCH: SIGN_UP");
         dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
       },
     }),
