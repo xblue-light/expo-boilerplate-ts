@@ -1,0 +1,13 @@
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJlbWFpbCI6ImtkYWtkYWtkYWtAYWJ2LmJnIiwiaWF0IjoxNjU5MTY1ODQyfQ.GX-UElcz25drmf6p4qEAFc2202YVEvxJn5ghs9Gg1Uo
+
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "johndoe",
+    "email": "kdakdakdak@abv.bg"
+}
