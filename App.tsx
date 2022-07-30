@@ -1,22 +1,14 @@
 import React, { useEffect, useReducer, useMemo } from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SignInScreen } from "./app/screens/SignInScreen";
 import { AuthContext } from "./app/context/AuthContext";
 import authReducer from "./app/reducers/authReducer";
 import { ProtectedScreen } from "./app/screens/ProtectedScreen";
+import { SplashScreen } from "./app/screens/SplashScreen";
 import { loginWithMockUserCreds } from "./app/axios/axiosInstance";
 import * as SecureStore from "expo-secure-store";
-import { IAuthData } from "./app/interfaces/IAuthData";
-
-function SplashScreen() {
-  return (
-    <View>
-      <Text>Loading...</Text>
-    </View>
-  );
-}
+import { Alert } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +44,12 @@ export default function App() {
 
   const authContext = useMemo(
     () => ({
-      signIn: async (data?: IAuthData) => {
+      signIn: async (data?: any) => {
+        if (!data?.username && !data?.password) {
+          Alert.alert("Error", "Please provide input details!");
+          return;
+        }
+
         // Login and get access token
         let accessToken = await loginWithMockUserCreds();
         // In a production app, we need to send some data (usually username, password) to server and get a token
@@ -72,7 +69,7 @@ export default function App() {
         // Clear the secure storage on logout
         SecureStore.deleteItemAsync("userToken");
       },
-      signUp: async (data?: IAuthData) => {
+      signUp: async (data?: any) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage

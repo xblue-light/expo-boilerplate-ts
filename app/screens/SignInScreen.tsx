@@ -10,19 +10,37 @@ export const SignInScreen = (): JSX.Element => {
   const { signIn } = useContext(AuthContext);
 
   return (
-    <View>
+    <View
+      style={{
+        padding: 16,
+        margin: 8,
+      }}
+    >
       <TextInput
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
+        style={{
+          backgroundColor: "white",
+          padding: 16,
+          marginBottom: 8,
+        }}
       />
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        style={{
+          backgroundColor: "white",
+          padding: 16,
+          marginBottom: 45,
+        }}
       />
-      <Button title="Sign in" onPress={() => signIn({ username, password })} />
+      <Button
+        title="Sign in"
+        onPress={() => signIn({ username, password } as any)}
+      />
     </View>
   );
 };
