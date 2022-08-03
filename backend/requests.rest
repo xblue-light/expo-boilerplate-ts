@@ -1,5 +1,5 @@
 GET http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5kb2UiLCJlbWFpbCI6ImtkYWtkYWtkYWtAYWJ2LmJnIiwiaWF0IjoxNjU5MTY1ODQyfQ.GX-UElcz25drmf6p4qEAFc2202YVEvxJn5ghs9Gg1Uo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vb25leWJyYXNrYXdhbG92aWNoIiwiZW1haWwiOiJtb29uZXlicmFza2F3YWxvdmljaEBwbS5tZSIsImlhdCI6MTY1OTU1MDE0OH0.JFnC21nx0AizsJXChKacgrSe0Mm0cDETUatN68LghAQ
 
 
 ###
@@ -8,6 +8,6 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "username": "johndoe",
-    "email": "kdakdakdak@abv.bg"
+    "username": "mooneybraskawalovich",
+    "email": "mooneybraskawalovich@pm.me"
 }

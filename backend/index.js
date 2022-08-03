@@ -20,7 +20,7 @@ const posts = [
 ];
 
 app.get("/posts", authenticateRoute, (req, res) =>
-  res.json(posts.filter((post) => post.username === req.userPayload.username))
+  res.json(posts.filter((post) => post.username === req.decoded.username))
 );
 
 app.post("/login", (req, res) =>
@@ -42,11 +42,10 @@ function authenticateRoute(req, res, next) {
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
   // Here we want to verify that the JWT is valid so we need to provide our token and secret access token. The same secret that we used to sign the token initially.
-  jwt.verify(token, `${process.env.SECRET_ACCESS_TOKEN}`, (err, jwtPayload) => {
+  jwt.verify(token, `${process.env.SECRET_ACCESS_TOKEN}`, (err, decoded) => {
     if (err) return res.sendStatus(403);
-    console.log("=============");
-    console.log(jwtPayload);
-    req.userPayload = jwtPayload;
+    req.decoded = decoded;
+    console.log(req.decoded);
     next();
   });
 }
